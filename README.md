@@ -49,10 +49,11 @@ php artisan db:seed
 
 ## ER 図
 
-![alt](erd.png)
+![alt text](image.png)
 
 ## URL
 
 - 開発環境：http://localhost/
 - phpMyAdmin:：http://localhost:8080/
+
 # merchandise
