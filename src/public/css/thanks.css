@@ -1,0 +1,35 @@
+.thanks-page__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+}
+
+.thanks-page__message {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.thanks-page__btn {
+    width: 100px;
+    padding: 5px 20px;
+    margin: 60px auto 0px;
+    background-color: #000;
+    color: white;
+}
+
+.thanks-page__bg-inner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    text-align: center;
+    font-family: serif;
+    opacity: 0.05;
+    transform: translate(-50%, -50%);
+}
+
+.thanks-page__bg-text {
+    font-size: 18vw;
+}

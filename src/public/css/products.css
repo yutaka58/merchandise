@@ -1,0 +1,94 @@
+.body {
+    height: 100%;
+}
+
+.header {
+    padding: 5px;
+    margin: 5px auto;
+    height: 40px;
+    width: 100%;
+    text-align: left;
+}
+
+.header-group {
+    margin: 0 auto;
+    padding-left: 20px;
+}
+
+.header-title {
+    font-size: 30px;
+    color: yellow;
+    font-family: "Meiryo Italic", serif, oblique;
+    font-style: italic;
+}
+
+/* 登録フォームのレイアウト */
+
+.form {
+    background-color: #f7f7f7;
+    width: 100%;
+}
+
+.register-form__title {
+    font-size: 24px;
+    padding-left: 5px;
+}
+
+.register-form__btn {
+    border: 1px solid #000;
+    background-color: orange;
+    border-radius: 5px;
+    font-size: 15px;
+    padding: 5px 30px;
+}
+
+.register-form__inner {
+    padding-top: 50px;
+    margin: 10px 30px;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 検索機能のレイアウト */
+
+.products-form__inner {
+    width: 20%;
+    padding: 10px 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.products-form__search {
+    width: 70%;
+    font-size: 12px;
+    padding: 10px 10px;
+    border-radius: 50px;
+}
+
+.products-btn {
+    font-size: 12px;
+    width: 80%;
+    text-align: center;
+    padding: 10px 10px;
+    background-color: rgb(255, 202, 104);
+    border-radius: 5px;
+}
+
+.products-form__label {
+    font-size: 17px;
+    padding: 10px 10px;
+    text-align: left;
+    margin-left: 10px;
+    font-weight: bold;
+}
+
+.products-form__item {
+    width: 80%;
+    padding: 10px 10px;
+
+}
+
+.products-form__image {
+    width: 80%;
+}
