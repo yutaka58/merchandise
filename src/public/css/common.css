@@ -1,0 +1,20 @@
+.header {
+    padding: 5px;
+    margin: 5px auto;
+    height: 40px;
+    width: 100%;
+    text-align: left;
+}
+
+.header-group {
+    margin: 0 auto;
+    padding-left: 20px;
+}
+
+.header-title {
+    font-size: 30px;
+    color: yellow;
+    font-family: "Meiryo Italic", serif, oblique;
+    font-style: italic;
+}
+
