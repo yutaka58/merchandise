@@ -12,7 +12,13 @@
     @csrf
     <div class="register-form__group">
         <div class="register-form__inner">
-            <h2 class="register-form__title">商品一覧</h2>
+            <h2 class="register-form__title">
+                @if (isset($keyword) && $keyword != "")
+                    "{{ $keyword }}"の商品一覧
+                @else
+                    商品一覧
+                @endif
+            </h2>
             <input class="register-form__btn btn" type="submit" value="+ 商品を追加">
         </div>
     </div>
@@ -21,10 +27,10 @@
 <div class="main-content-wrapper">
 
     <!-- 検索機能 -->
-    <form class="products-form form" action="/search" method="post">
+    <form class="products-form form" action="/products/search" method="post">
         @csrf
         <div class="products-form__inner">
-            <input class="products-form__search" name="search" type="text" placeholder="商品名で検索">
+            <input class="products-form__search" name="keyword" type="text" placeholder="商品名で検索">
         </div>
         <div class="products-form__inner">
             <button class="products-btn">検索</button>

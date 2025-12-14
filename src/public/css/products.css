@@ -33,6 +33,18 @@
     justify-content: flex-start;
 }
 
+/* 検索キーワードの装飾 (任意) */
+.search-result-keyword {
+    font-size: 16px;
+    /* タイトルより少し小さく */
+    color: #555;
+    /* グレーアウト */
+    margin-left: 10px;
+    /* タイトルとの間に少しスペースを空ける */
+    font-weight: normal;
+    /* 太字にしない */
+}
+
 /* 検索機能のレイアウト */
 
 .products-form {

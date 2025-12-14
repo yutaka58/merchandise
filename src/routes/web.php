@@ -19,7 +19,7 @@ Route::get('/', function () {
 });
 
 Route::get('/products', [ProductsController::class, 'list']);
-
 Route::get('/thanks',[ProductsController::class, 'thanks']);
+Route::post('/products/search', [ProductsController::class, 'search']);
 
 Route::post('/register',[ProductsController::class, 'register']);
