@@ -18,8 +18,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/products', [ProductsController::class, 'list']);
+Route::get('/products', [ProductsController::class, 'list'])->name('products.list');
 Route::get('/thanks',[ProductsController::class, 'thanks']);
-Route::post('/products/search', [ProductsController::class, 'search']);
+Route::get('/products/search', [ProductsController::class, 'search'])->name('products.search');
 
-Route::post('/register',[ProductsController::class, 'register']);
+Route::get('/products/register', [ProductsController::class, 'create'])->name('products.create');
+Route::post('/products', [ProductsController::class, 'store'])->name('products.store');

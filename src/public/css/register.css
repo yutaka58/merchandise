@@ -1,0 +1,188 @@
+.content {
+    background-color: #f7f7f7;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+h2 {
+    text-align: left;
+    margin-bottom: 40px;
+    font-size: 24px;
+    font-weight: normal;
+    border-bottom: 1px solid #eee;
+    /* タイトルの下線 */
+    padding-bottom: 10px;
+}
+
+/* 各入力行のスタイル */
+.mb-3 {
+    margin-bottom: 25px !important;
+}
+
+/* ========================================= */
+/* 2. 必須タグのスタイリング */
+/* ========================================= */
+
+/* css/products/register.css */
+
+/* 必須タグのスタイリング */
+.required-tag {
+    display: inline-block;
+    background-color: #ff5252;
+    /* 赤色 */
+    color: white;
+    /* 白文字 */
+    font-size: 12px;
+    padding: 2px 6px;
+    /* 内側の余白 */
+    border-radius: 3px;
+    /* 角の丸み */
+    margin-left: 10px;
+    /* ラベルとの間隔 */
+    font-weight: normal;
+    /* 太字ではない */
+    vertical-align: middle;
+    /* 垂直方向の中央揃え (微調整) */
+}
+
+.optional-tag {
+    display: inline-block;
+    color: red;
+    font-size: 12px;
+    padding: 2px 6px;
+    margin-left: 10px;
+    font-weight: normal;
+}
+
+
+
+/* ========================================= */
+/* 3. 入力フィールドのスタイリング */
+/* ========================================= */
+
+.form-label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* テキスト、数値、ファイル入力フィールド */
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 0;
+    /* 角を直角に */
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+/* ファイル選択ボタンのスタイル調整 (ブラウザ依存が大きいため、CSSでの調整は限定的) */
+input[type="file"] {
+    border: none;
+    padding: 0;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+    background-color: #ccc;
+    color: #333;
+    padding: 8px 15px;
+    border: 1px solid #aaa;
+    border-radius: 0;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+
+/* ========================================= */
+/* 季節のラジオボタンのスタイリング */
+/* ========================================= */
+
+/* ラジオボタングループ全体（横並びと間隔の設定） */
+.season-radio-group {
+    display: flex;
+    /* 子要素（ラベル）を横並びにする */
+    gap: 30px;
+    /* アイテム間の水平方向のスペース */
+    margin-top: 10px;
+}
+
+/* 各ラジオボタンとテキストを囲むラベルのスタイル */
+.radio-label {
+    display: inline-flex;
+    /* ラジオボタンとテキストをインラインで整列 */
+    align-items: center;
+    /* 垂直方向の中央揃え */
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+}
+
+/* ラジオボタン自体のサイズ調整 */
+.radio-label input[type="radio"] {
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+}
+
+/* フォームのラベルと必須タグは以前の回答のCSSが適用されます */
+/*
+.form-label { font-weight: bold; ... }
+.required-tag { background-color: #ff5252; ... }
+*/
+
+/* ========================================= */
+/* 5. ボタンのスタイリングと配置 */
+/* ========================================= */
+
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-top: 1px solid #eee;
+}
+
+/* ボタンを中央で横並びにするラッパー */
+.form-footer {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding-top: 5px;
+}
+
+/* 戻るボタン (灰色) */
+.btn-secondary {
+    background-color: #e0e0e0;
+    /* 薄い灰色 */
+    border: 1px solid #ccc;
+    color: #333;
+    font-weight: bold;
+    padding: 10px 50px;
+    border-radius: 0;
+    /* 角を直角に */
+    transition: background-color 0.2s;
+}
+
+.btn-secondary:hover {
+    background-color: #d0d0d0;
+}
+
+/* 登録ボタン (黄色) */
+.btn-primary {
+    background-color: #ffc400;
+    /* 画像の明るい黄色 */
+    border: none;
+    color: #333;
+    font-weight: bold;
+    padding: 10px 50px;
+    border-radius: 0;
+    transition: background-color 0.2s;
+}
+
+.btn-primary:hover {
+    background-color: #e6b000;
+}

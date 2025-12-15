@@ -33,22 +33,17 @@
     justify-content: flex-start;
 }
 
-/* 検索キーワードの装飾 (任意) */
 .search-result-keyword {
     font-size: 16px;
-    /* タイトルより少し小さく */
     color: #555;
-    /* グレーアウト */
     margin-left: 10px;
-    /* タイトルとの間に少しスペースを空ける */
     font-weight: normal;
-    /* 太字にしない */
 }
 
 /* 検索機能のレイアウト */
 
 .products-form {
-    width: 20%;
+    width: 30%;
     padding: 10px;
     display: flex;
     flex-direction: column;
@@ -56,7 +51,6 @@
 
 .products-form__inner {
     width: 100%;
-
     margin: 10px 0;
     text-align: left;
 }
@@ -72,7 +66,7 @@
     font-size: 16px;
     width: 100%;
     text-align: center;
-    padding: 10px 0;
+    padding: 10px ;
     background-color: rgb(255, 202, 104);
     border-radius: 5px;
 }
@@ -80,12 +74,14 @@
 .products-form__label {
     font-size: 20px;
     font-weight: bold;
+    padding: 10px auto;
+    padding-bottom: 20px;
 }
 
 .products-form__item {
     font-size: 12px;
-    padding: 10px 130px;
-
+    width: 100%;
+    padding: 10px;
 }
 
 .product-list-container {
@@ -127,22 +123,38 @@
     padding-right: 10px;
 }
 
-
 .pagination-container {
-/* 1. 中央寄せのための設定: Flexboxを使い、子要素（{{ $products->links() }} の出力）を中央に配置する */
     display: flex;
     justify-content: center;
-    /* 水平方向の中央寄せ */
     align-items: center;
-    /* 垂直方向の中央寄せ (高さが確保されていれば) */
-
-    /* 2. サイズ固定を削除し、内容に応じて幅を自動調整させる */
     width: auto;
-    /* 幅を削除またはautoに設定 */
     height: auto;
-    /* 高さを削除またはautoに設定 */
-
-    /* 3. 上下の余白（アイテムの下とページネーションの間に隙間を作る） */
     margin-top: 30px;
 }
 
+.sort-tag-container {
+    margin-top: 20px;
+}
+
+.sort-tag {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 10px;
+    border: 1px solid orange;
+    border-radius: 20px;
+    background-color: #f0f0f0;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+.sort-tag .clear-icon {
+    margin-left: 8px;
+    font-weight: bold;
+    color: orange;
+}
+
+.sort-tag:hover {
+    background-color: orange;
+}
