@@ -23,4 +23,4 @@ Route::get('/thanks',[ProductsController::class, 'thanks']);
 Route::get('/products/search', [ProductsController::class, 'search'])->name('products.search');
 
 Route::get('/products/register', [ProductsController::class, 'create'])->name('products.create');
-Route::post('/products', [ProductsController::class, 'store'])->name('products.store');
+Route::post('/products/register', [ProductsController::class, 'store'])->name('products.store');

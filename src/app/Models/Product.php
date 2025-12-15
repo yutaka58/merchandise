@@ -9,29 +9,21 @@ class Product extends Model
 {
     use HasFactory;
 
-    public function scopeCategorySearch($query, $keyword)
-    {
-        if (!empty($keyword)) {
-        $query->where('keyword', $keyword);
-    }
-    }
+    protected $fillable = [
+        'name',
+        'price',
+        'image', // DBスキーマに合わせて修正
+        'description',
+        // 'season_id' は products テーブルから削除されたため、ここから取り除く
+    ];
 
-    public function scopeKeywordSearch($query, $keyword)
-    {
-        if (!empty($keyword)) {
-        $query->where('name', 'like', '%' . $keyword . '%');
-    }
-        return $query;
-    }
-
-    protected $fillable = ['name', 'price', 'image_path', 'season_id', 'description'];
-    
     /**
-     * この商品が属する季節を取得する
+     * 商品が属する季節（複数の季節）を取得します。
+     * リレーション: 多対多 (Many-to-Many)
      */
-    public function season(): BelongsTo
+    public function seasons()
     {
-        return $this->belongsTo(Season::class);
+        // 💡 中間テーブル名 'product_season' を指定
+        return $this->belongsToMany(Season::class, 'product_season');
     }
-
 }

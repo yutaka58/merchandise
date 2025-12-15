@@ -186,3 +186,14 @@ hr {
 .btn-primary:hover {
     background-color: #e6b000;
 }
+
+.text-danger {
+    color: red;
+    /* もしくは #dc3545 のような赤系の色 */
+    font-weight: bold;
+    /* （オプション）強調したい場合 */
+    margin-top: 5px;
+    /* （オプション）上のフィールドとの間にスペースを入れる */
+    font-size: 0.9em;
+    /* （オプション）文字サイズを調整 */
+}
