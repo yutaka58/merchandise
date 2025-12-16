@@ -1,0 +1,136 @@
+/* コンテナ全体の調整 */
+.container {
+    max-width: 900px;
+    /* 画像のようなサイズ感に合わせる */
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* パンくずリスト */
+.product-nav {
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #007bff;
+}
+
+/* メインの2カラムエリア */
+.product-grid {
+    display: flex;
+    justify-content: space-between;
+    gap: 50px;
+    /* 左右の間隔 */
+    margin-bottom: 30px;
+}
+
+.product-grid__left {
+    width: 45%;
+    /* 画像エリアの幅 */
+}
+
+.product-grid__right {
+    width: 50%;
+    /* フォームエリアの幅 */
+}
+
+/* 画像ボックス */
+.image-box {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    /* 正方形を維持 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.image-box img {
+    max-width: 900%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* チェックボックス（季節）の並び */
+.checkbox-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+}
+
+.checkbox-group label {
+    font-weight: normal !important;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+/* 商品説明（下のセクション） */
+.product-description-section {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.product-description-section label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.product-description-section textarea {
+    width: 100%;
+    border-radius: 4px;
+    resize: none;
+    /* 勝手に大きくならないように */
+}
+
+/* ボタンのデザイン */
+.btn-back {
+    display: inline-block;
+    background-color: #ddd;
+    color: #333;
+    padding: 10px 50px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.btn-submit {
+    background-color: #ffc400;
+    /* 黄色 */
+    color: #333;
+    padding: 10px 50px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ボタンエリアの親要素 */
+.form-footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* 💡 垂直方向の中央揃え */
+    gap: 30px;
+    margin-top: 50px;
+}
+
+/* 削除ボタン専用のスタイル（ゴミ箱を右端に配置する場合） */
+.btn-delete {
+    background: none;
+    border: 1px solid #ff0000;
+    color: #ff0000;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.3s;
+}
+
+.btn-delete:hover {
+    background-color: #ff0000;
+    color: #fff;
+}

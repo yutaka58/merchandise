@@ -90,27 +90,53 @@
     justify-content: space-around;
 }
 
+/* 商品カード全体を一つの白い塊にする */
+.product-item {
+    background-color: #ffffff;
+    /* 💡 カード全体を白に */
+    width: 26%;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    /* 境目をなくすために境界線を消す、あるいはカード全体を囲む */
+    border-radius: 4px;
+    overflow: hidden;
+    /* 画像が角からはみ出さないように */
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    /* 💡 軽い影をつけると背景グレーに映えます */
+}
+
+/* 画像エリアの背景も白にする */
 .product-image-wrapper {
     height: 200px;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 5px;
+    background-color: #ffffff;
+    /* 💡 画像の周りも白 */
+    margin-bottom: 0;
+    /* 💡 下のテキストとの隙間をゼロに */
 }
 
 .product-item img {
-    padding: 10px;
-    text-align: center;
+    /* paddingを調整して、画像とテキストの距離を縮める */
+    padding: 10px 10px 0 10px;
     max-width: 100%;
-    max-height: 90%;
+    max-height: 100%;
+    object-fit: contain;
 }
 
+/* テキストエリア */
 .product-info-row {
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: #ffffff;
+    /* 💡 もちろん白 */
+    padding: 15px 0;
+    /* 上下の余白を整える */
 }
 
 .product-name {
@@ -121,6 +147,16 @@
 .product-price {
     align-items: right;
     padding-right: 10px;
+}
+
+.product-link {
+    text-decoration: none;
+    display: block;
+}
+
+.product-link:hover {
+    opacity: 0.8;
+    transition: opacity 0.3s;
 }
 
 .pagination-container {

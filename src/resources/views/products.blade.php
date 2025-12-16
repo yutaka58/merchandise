@@ -69,9 +69,12 @@
     <div class="product-list-container">
         @foreach ($products as $product)
             <div class="product-item">
-                <div class="product-image-wrapper">
-                    <img src="{{ asset('images/fruits-img/' . $product->image) }}" alt="{{ $product->name }}">
-                </div>
+                <a href="{{ route('products.show', ['productId' => $product->id]) }}" class="product-link">
+                    <div class="product-image-wrapper">
+                        <img src="{{ asset('images/fruits-img/' . $product->image) }}" alt="{{ $product->name }}">
+                    </div>
+                </a>
+
                 <div class="product-info-row">
                     <p class="product-name">{{ $product->name }}</p>
                     <p class="product-price">¥{{ number_format($product->price) }}</p>

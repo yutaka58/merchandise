@@ -103,38 +103,25 @@ input[type="file"]::-webkit-file-upload-button {
 /* 季節のラジオボタンのスタイリング */
 /* ========================================= */
 
-/* ラジオボタングループ全体（横並びと間隔の設定） */
-.season-radio-group {
+.season-checkbox-group {
     display: flex;
-    /* 子要素（ラベル）を横並びにする */
     gap: 30px;
-    /* アイテム間の水平方向のスペース */
     margin-top: 10px;
 }
 
-/* 各ラジオボタンとテキストを囲むラベルのスタイル */
-.radio-label {
+.checkbox-label {
     display: inline-flex;
-    /* ラジオボタンとテキストをインラインで整列 */
     align-items: center;
-    /* 垂直方向の中央揃え */
     cursor: pointer;
     font-size: 16px;
     color: #333;
 }
 
-/* ラジオボタン自体のサイズ調整 */
-.radio-label input[type="radio"] {
+.checkbox-label input[type="checkbox"] {
     margin-right: 5px;
     width: 16px;
     height: 16px;
 }
-
-/* フォームのラベルと必須タグは以前の回答のCSSが適用されます */
-/*
-.form-label { font-weight: bold; ... }
-.required-tag { background-color: #ff5252; ... }
-*/
 
 /* ========================================= */
 /* 5. ボタンのスタイリングと配置 */
@@ -146,7 +133,6 @@ hr {
     border-top: 1px solid #eee;
 }
 
-/* ボタンを中央で横並びにするラッパー */
 .form-footer {
     display: flex;
     justify-content: center;
@@ -154,7 +140,6 @@ hr {
     padding-top: 5px;
 }
 
-/* 戻るボタン (灰色) */
 .btn-secondary {
     background-color: #e0e0e0;
     /* 薄い灰色 */
@@ -171,10 +156,8 @@ hr {
     background-color: #d0d0d0;
 }
 
-/* 登録ボタン (黄色) */
 .btn-primary {
     background-color: #ffc400;
-    /* 画像の明るい黄色 */
     border: none;
     color: #333;
     font-weight: bold;
@@ -188,12 +171,14 @@ hr {
 }
 
 .text-danger {
-    color: red;
-    /* もしくは #dc3545 のような赤系の色 */
-    font-weight: bold;
-    /* （オプション）強調したい場合 */
-    margin-top: 5px;
-    /* （オプション）上のフィールドとの間にスペースを入れる */
-    font-size: 0.9em;
-    /* （オプション）文字サイズを調整 */
+    color: #ff0000;
+    font-size: 0.875rem;
+    margin-top: 4px;
+    display: block;
 }
+
+#image-preview-container {
+    margin-bottom: 15px;
+}
+
+

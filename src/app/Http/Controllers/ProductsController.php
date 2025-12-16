@@ -66,4 +66,57 @@ class ProductsController extends Controller
     // 4. 成功時のリダイレクト
         return redirect()->route('products.list')->with('success', '商品を登録しました。');
     }
+
+        public function show($productId)
+    {
+        $product = \App\Models\Product::with('seasons')->findOrFail($productId);
+    
+        // 💡 修正点：'ProductSeason' ではなく 'Season' など、正しいモデル名にする
+        // モデルが App/Models/Season.php にある場合は以下のように記述
+        $seasons = \App\Models\Season::all();
+
+        return view('products.detail', compact('product', 'seasons'));
+    }
+
+    // app/Http/Controllers/ProductsController.php
+
+    public function update(\App\Http\Requests\RegisterRequest $request, $productId)
+    {
+        $product = \App\Models\Product::findOrFail($productId);
+
+        // 画像が新しくアップロードされた場合の処理
+        $imagePath = $product->image;
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('public/images');
+            $imagePath = str_replace('public/', '', $imagePath);
+        }
+
+        // 商品情報の更新
+        $product->update([
+            'name' => $request->name,
+            'price' => $request->price,
+            'image' => $imagePath,
+            'description' => $request->description,
+        ]);
+
+        // 季節（多対多）の同期（既存の関連を消して新しい配列で上書き）
+        $product->seasons()->sync($request->season_id);
+
+        return redirect()->route('products.list')->with('success', '商品を更新しました');
+    }
+
+    // app/Http/Controllers/ProductsController.php
+
+        public function destroy($productId)
+    {
+        // IDに一致する商品を取得
+        $product = \App\Models\Product::findOrFail($productId);
+
+        // 商品を削除（関連する中間テーブルのデータもリレーション設定により削除されます）
+        $product->delete();
+
+        // 一覧画面へ戻り、完了メッセージを表示
+        return redirect()->route('products.list')->with('success', '商品を削除しました');
+    }
+
 }

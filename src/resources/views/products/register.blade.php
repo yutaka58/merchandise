@@ -26,21 +26,28 @@
 
         <div class="mb-3">
             <label for="image" class="form-label">商品画像 <span class="required-tag">必須</span></label>
-            <input type="file" class="form-control" id="image" name="image" accept="image/*"> @error('image')
+
+            <div id="image-preview-container" class="mb-2" style="display: none; min-height: 10px;">
+                <img id="image-preview" src="" alt="プレビュー" style="max-width: 300px; height: 200px; border: 1px solid #ddd; padding: 5px; display: block;">
+            </div>
+
+            <input type="file" class="form-control" id="image" name="image" accept="image/*" onchange="previewImage(this)">
+
+            @error('image')
                 <div class="text-danger">{{ $message }}</div>
             @enderror
         </div>
 
         <div class="mb-3">
-            <label for="season_id" class="form-label">季節 <span class="required-tag">必須</span> <span class="optional-tag">複数選択可</span></label>
+            <label class="form-label">季節 <span class="required-tag">必須</span> <span class="optional-tag">複数選択可</span></label>
 
-            <div class="season-radio-group">
-                @foreach($seasons as $season)
-                    <label class="radio-label">
-                        <input type="radio"
-                            name="season_id"
+            <div class="season-checkbox-group"> @foreach($seasons as $season)
+                    <label class="checkbox-label">
+                        <input type="checkbox"
+                            name="season_id[]"
                             value="{{ $season->id }}"
-                            {{ old('season_id') == $season->id ? 'checked' : '' }}> {{ $season->name }}
+                            {{ is_array(old('season_id')) && in_array($season->id, old('season_id')) ? 'checked' : '' }}>
+                        {{ $season->name }}
                     </label>
                 @endforeach
             </div>
@@ -68,4 +75,26 @@
         </div>
     </form>
 </div>
+
+<script>
+window.previewImage = function(input) {
+    const previewContainer = document.getElementById('image-preview-container');
+    const previewImage = document.getElementById('image-preview');
+
+    if (input.files && input.files[0]) {
+        if (previewImage.src.startsWith('blob:')) {
+            URL.revokeObjectURL(previewImage.src);
+        }
+
+        const fileUrl = URL.createObjectURL(input.files[0]);
+        previewImage.src = fileUrl;
+        
+        previewContainer.style.display = 'block';
+    } else {
+        previewContainer.style.display = 'none';
+        previewImage.src = "";
+    }
+}
+</script>
+
 @endsection
