@@ -69,7 +69,7 @@
     <div class="product-list-container">
         @foreach ($products as $product)
             <div class="product-item">
-                <a href="{{ route('products.show', ['productId' => $product->id]) }}" class="product-link">
+                <a href="{{ route('products.detail', ['productId' => $product->id]) }}" class="product-link">
                     <div class="product-image-wrapper">
                         <img src="{{ asset('images/fruits-img/' . $product->image) }}" alt="{{ $product->name }}">
                     </div>

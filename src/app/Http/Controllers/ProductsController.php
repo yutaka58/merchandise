@@ -5,19 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Season;
-use App\Models\Products_season;
 use App\Http\Requests\RegisterRequest;
+use App\Http\Requests\ProductsRequest;
 
 class ProductsController extends Controller
 {
+    // 商品一覧
     public function list(Request $request)
     {
         $products = Product::paginate(6);
         $keyword = '';
-
         return view('products', compact('products', 'keyword'));
     }
 
+    // 検索機能
     public function search(Request $request)
     {
         $keyword = $request->input('keyword');
@@ -35,60 +36,53 @@ class ProductsController extends Controller
         return view('products', compact('products', 'keyword'));
     }
 
-    public function create(Request $request)
+    // 登録画面表示
+    public function create()
     {
-        $seasons = \App\Models\Season::all(); // データベースから4つの季節データを取得
+        $seasons = Season::all();
         return view('products.register', compact('seasons'));
     }
 
-// app/Http/Controllers/ProductsController.php
-
-    public function store(\App\Http\Requests\RegisterRequest $request)
+    // 新規登録処理
+    public function store(RegisterRequest $request)
     {
-    // バリデーション失敗時は、このメソッドに入る前に自動的にフォームへ戻ります。
-
-    // 1. 画像の保存
-        $imagePath = $request->file('image')->store('public/images');
+        // 1. 画像の保存
+        $imagePath = $request->file('image')->store('public/fruits-img');
         $imagePath = str_replace('public/', '', $imagePath);
 
-    // 2. Product モデルの作成 (中間テーブルに関連する season_id は含めない)
-        $product = \App\Models\Product::create([
+        // 2. 商品作成
+        $product = Product::create([
             'name' => $request->name,
             'price' => $request->price,
-            'image' => $imagePath, // 💡 productsテーブルのカラム名 'image' に合わせる
+            'image' => $imagePath,
             'description' => $request->description,
         ]);
 
-    // 3. 季節の関連付け（多対多）
-    // フォームが season_id (単一IDまたはID配列) を送る場合、中間テーブルに登録
+        // 3. 季節の紐付け
         $product->seasons()->attach($request->season_id);
 
-    // 4. 成功時のリダイレクト
         return redirect()->route('products.list')->with('success', '商品を登録しました。');
     }
 
-        public function show($productId)
+    // 詳細・編集画面表示
+    public function show($productId)
     {
-        $product = \App\Models\Product::with('seasons')->findOrFail($productId);
-    
-        // 💡 修正点：'ProductSeason' ではなく 'Season' など、正しいモデル名にする
-        // モデルが App/Models/Season.php にある場合は以下のように記述
-        $seasons = \App\Models\Season::all();
-
+        $product = Product::with('seasons')->findOrFail($productId);
+        $seasons = Season::all();
         return view('products.detail', compact('product', 'seasons'));
     }
 
-    // app/Http/Controllers/ProductsController.php
-
-    public function update(\App\Http\Requests\RegisterRequest $request, $productId)
+    // 更新処理
+    public function update(ProductsRequest $request, $productId)
     {
         $product = \App\Models\Product::findOrFail($productId);
 
-        // 画像が新しくアップロードされた場合の処理
         $imagePath = $product->image;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('public/images');
-            $imagePath = str_replace('public/', '', $imagePath);
+            // 画像を保存
+            $path = $request->file('image')->store('public/fruits-img');
+            // パスから 'public/' を取り除く
+            $imagePath = str_replace('public/', '', $path);
         }
 
         // 商品情報の更新
@@ -99,24 +93,17 @@ class ProductsController extends Controller
             'description' => $request->description,
         ]);
 
-        // 季節（多対多）の同期（既存の関連を消して新しい配列で上書き）
+        // 季節の同期
         $product->seasons()->sync($request->season_id);
 
         return redirect()->route('products.list')->with('success', '商品を更新しました');
     }
 
-    // app/Http/Controllers/ProductsController.php
-
-        public function destroy($productId)
+    // 削除処理
+    public function destroy($productId)
     {
-        // IDに一致する商品を取得
-        $product = \App\Models\Product::findOrFail($productId);
-
-        // 商品を削除（関連する中間テーブルのデータもリレーション設定により削除されます）
+        $product = Product::findOrFail($productId);
         $product->delete();
-
-        // 一覧画面へ戻り、完了メッセージを表示
         return redirect()->route('products.list')->with('success', '商品を削除しました');
     }
-
 }

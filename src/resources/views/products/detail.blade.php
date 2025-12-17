@@ -11,14 +11,15 @@
         <a href="{{ route('products.list') }}">商品一覧</a> ＞ {{ $product->name }}
     </nav>
 
-    <form action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
+    {{-- ✅ id="update-form" を追加 --}}
+    <form id="update-form" action="{{ route('products.update', $product->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
         @method('PATCH')
 
         <div class="product-grid">
             <div class="product-grid__left">
                 <div id="image-preview-container" class="image-box">
-                    <img id="image-preview" src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->name }}">
+                    <img id="image-preview" src="{{ asset('storage/fruits-img/' . $product->image) }}">
                 </div>
                 <div class="file-input-group">
                     <input type="file" name="image" id="image" onchange="previewImage(this)">
@@ -51,11 +52,12 @@
                         @foreach($seasons as $season)
                             <label>
                                 <input type="checkbox" name="season_id[]" value="{{ $season->id }}"
-                                    {{-- 💡 現在の商品がこの季節を持っていれば 'checked' にする --}}
+                                    {{-- 💡 ここを修正：oldデータがあるか、または商品の既存データにあるかを確認 --}}
                                     @if(in_array($season->id, old('season_id', $product->seasons->pluck('id')->toArray())))
                                         checked
                                     @endif
                                 >
+                                <span></span>
                                 {{ $season->name }}
                             </label>
                         @endforeach
@@ -74,19 +76,33 @@
                 <p class="text-danger">{{ $message }}</p>
             @enderror
         </div>
-
-        <div class="form-footer">
-            <a href="{{ route('products.list') }}" class="btn-back">戻る</a>
-            <button type="submit" class="btn-submit">変更を保存</button>
-    
-            <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？')" style="display: inline;">
-                @csrf
-                @method('DELETE')
-                <button type="submit" style="background:none; border:none; color:red; cursor:pointer; font-size: 20px; margin-left: 20px;">
-                    <i class="fas fa-trash"></i> 🗑️
-                </button>
-            </form>
-        </div>
     </form>
+    
+    <div class="form-footer">
+        <a href="{{ route('products.list') }}" class="btn-back">戻る</a>
+        
+        {{-- ✅ form="update-form" を追加 --}}
+        <button type="submit" form="update-form" class="btn-submit">変更を保存</button>
+    
+        <form action="{{ route('products.destroy', $product->id) }}" method="POST" onsubmit="return confirm('本当に削除しますか？')" style="display: inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" style="background:none; border:none; color:red; cursor:pointer; font-size: 20px; margin-left: 20px;">
+                <i class="fas fa-trash"></i> 🗑️
+            </button>
+        </form>
+    </div>
 </div>
+
+<script>
+function previewImage(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('image-preview').src = e.target.result;
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+</script>
 @endsection

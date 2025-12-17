@@ -1,136 +1,258 @@
-/* コンテナ全体の調整 */
+/* =============================================
+   全体コンテナと共通設定
+   ============================================= */
+
+.content {
+    background-color: #f7f7f7;;
+}
+
 .container {
     max-width: 900px;
-    /* 画像のようなサイズ感に合わせる */
     margin: 0 auto;
-    padding: 20px;
+    padding: 20px 40px;
+    font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
 }
 
-/* パンくずリスト */
+/* パンくずリスト風ナビゲーション */
 .product-nav {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
     font-size: 14px;
-    color: #007bff;
 }
 
-/* メインの2カラムエリア */
+.product-nav a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+/* =============================================
+   メインの2カラムグリッド（画像と基本情報）
+   ============================================= */
 .product-grid {
     display: flex;
     justify-content: space-between;
-    gap: 50px;
-    /* 左右の間隔 */
-    margin-bottom: 30px;
+    gap: 60px;
+    margin-bottom: 40px;
 }
 
+/* 左側：画像エリア */
 .product-grid__left {
-    width: 45%;
-    /* 画像エリアの幅 */
+    width: 38%;
 }
 
-.product-grid__right {
-    width: 50%;
-    /* フォームエリアの幅 */
-}
-
-/* 画像ボックス */
 .image-box {
     width: 100%;
     aspect-ratio: 1 / 1;
     /* 正方形を維持 */
+    background-color: #fff;
+    border: 1px solid #ddd;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
-    border: 1px solid #ddd;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
 }
 
 .image-box img {
-    max-width: 900%;
+    max-width: 100%;
     max-height: 100%;
     object-fit: contain;
+    /* 画像の比率を崩さない */
+}
+
+/* ファイル選択ボタンのスタイル */
+.file-input-group input[type="file"] {
+    width: 100%;
+    font-size: 12px;
+}
+
+/* 右側：フォーム入力エリア */
+.product-grid__right {
+    width: 50%;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.product-description-section textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 16px;
+    box-sizing: border-box;
+    /* パディングを含めた幅計算 */
 }
 
 /* チェックボックス（季節）の並び */
 .checkbox-group {
     display: flex;
-    gap: 15px;
+    gap: 20px;
     flex-wrap: wrap;
     margin-top: 10px;
 }
 
 .checkbox-group label {
     font-weight: normal !important;
+    font-size: 15px;
     display: flex;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
+    cursor: pointer;
 }
 
-/* 商品説明（下のセクション） */
+/* =============================================
+   商品説明エリア（下部）
+   ============================================= */
 .product-description-section {
-    margin-top: 20px;
-    width: 100%;
+    margin-bottom: 50px;
 }
 
 .product-description-section label {
     display: block;
     font-weight: bold;
+    font-size: 16px;
     margin-bottom: 10px;
 }
 
 .product-description-section textarea {
     width: 100%;
-    border-radius: 4px;
+    min-height: 120px;
     resize: none;
-    /* 勝手に大きくならないように */
+    /* ユーザーによるサイズ変更を禁止 */
 }
 
-/* ボタンのデザイン */
-.btn-back {
-    display: inline-block;
-    background-color: #ddd;
-    color: #333;
-    padding: 10px 50px;
-    text-decoration: none;
+/* =============================================
+   バリデーションエラー（赤文字）
+   ============================================= */
+.text-danger {
+    color: #e74c3c;
+    font-size: 13px;
     font-weight: bold;
+    margin-top: 5px;
+    line-height: 1.4;
 }
 
-.btn-submit {
-    background-color: #ffc400;
-    /* 黄色 */
-    color: #333;
-    padding: 10px 50px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-/* ボタンエリアの親要素 */
+/* =============================================
+   フッターボタンエリア
+   ============================================= */
 .form-footer {
     display: flex;
     justify-content: center;
     align-items: center;
-    /* 💡 垂直方向の中央揃え */
-    gap: 30px;
-    margin-top: 50px;
+    gap: 25px;
+    position: relative;
+    /* ゴミ箱ボタンの配置基準 */
+    padding-bottom: 50px;
 }
 
-/* 削除ボタン専用のスタイル（ゴミ箱を右端に配置する場合） */
-.btn-delete {
-    background: none;
-    border: 1px solid #ff0000;
-    color: #ff0000;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
+/* 戻るボタン */
+.btn-back {
+    display: inline-block;
+    background-color: #e0e0e0;
+    color: #333;
+    padding: 12px 60px;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.btn-back:hover {
+    background-color: #d0d0d0;
+}
+
+/* 変更を保存ボタン（黄色） */
+.btn-submit {
+    background-color: #f1c40f;
+    color: #333;
+    padding: 12px 60px;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: 16px;
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.3s;
+    transition: background 0.3s;
 }
 
-.btn-delete:hover {
-    background-color: #ff0000;
-    color: #fff;
+.btn-submit:hover {
+    background-color: #d4ac0d;
+}
+
+/* 削除ボタン
+
+/* --- ゴミ箱アイコンを赤色にする --- */
+.btn-delete-icon {
+    background: none;
+    border: none;
+    font-size: 26px;
+    color: #e74c3c;
+    /* 鮮やかな赤色 */
+    cursor: pointer;
+    position: absolute;
+    right: 0;
+    transition: opacity 0.3s;
+}
+
+.btn-delete-icon:hover {
+    opacity: 0.7;
+}
+
+/* --- チェックボックスを丸くするカスタムスタイル --- */
+.checkbox-group label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    position: relative;
+    font-weight: normal !important;
+}
+
+/* 標準のチェックボックスを隠す */
+.checkbox-group input[type="checkbox"] {
+    display: none;
+}
+
+/* 外側の円（未選択状態） */
+.checkbox-group input[type="checkbox"]+span {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    /* ここで丸くする */
+    background: #fff;
+    vertical-align: middle;
+    position: relative;
+    transition: all 0.3s;
+}
+
+/* 選択された時の外側の色 */
+.checkbox-group input[type="checkbox"]:checked+span {
+    border-color: #f1c40f;
+    /* 保存ボタンと同じ黄色系 */
+    background-color: #f1c40f;
+}
+
+/* 内側のチェックマーク（または点） */
+.checkbox-group input[type="checkbox"]:checked+span::after {
+    content: "";
+    position: absolute;
+    left: 6px;
+    top: 2px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
 }
