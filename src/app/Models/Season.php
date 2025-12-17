@@ -13,13 +13,8 @@ class Season extends Model
         'name',
     ];
 
-    /**
-     * 季節に属する商品（複数の商品）を取得します。
-     * リレーション: 多対多 (Many-to-Many)
-     */
     public function products()
     {
-        // 💡 中間テーブル名 'product_season' を指定
         return $this->belongsToMany(Product::class, 'product_season');
     }
 }

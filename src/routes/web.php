@@ -26,7 +26,5 @@ Route::get('/products/register', [ProductsController::class, 'create'])->name('p
 Route::post('/products/register', [ProductsController::class, 'store'])->name('products.store');
 
 Route::get('/products/detail/{productId}', [ProductsController::class, 'show'])->name('products.detail');
-// 商品情報の更新処理
 Route::patch('/products/{productId}/update', [ProductsController::class, 'update'])->name('products.update');
-// 商品情報の削除処理
 Route::delete('/products/{productId}/delete', [ProductsController::class, 'destroy'])->name('products.destroy');

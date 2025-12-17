@@ -46,11 +46,9 @@ class ProductsController extends Controller
     // 新規登録処理
     public function store(RegisterRequest $request)
     {
-        // 1. 画像の保存
         $imagePath = $request->file('image')->store('public/fruits-img');
         $imagePath = str_replace('public/', '', $imagePath);
 
-        // 2. 商品作成
         $product = Product::create([
             'name' => $request->name,
             'price' => $request->price,
@@ -58,13 +56,11 @@ class ProductsController extends Controller
             'description' => $request->description,
         ]);
 
-        // 3. 季節の紐付け
         $product->seasons()->attach($request->season_id);
 
         return redirect()->route('products.list')->with('success', '商品を登録しました。');
     }
 
-    // 詳細・編集画面表示
     public function show($productId)
     {
         $product = Product::with('seasons')->findOrFail($productId);
@@ -72,16 +68,13 @@ class ProductsController extends Controller
         return view('products.detail', compact('product', 'seasons'));
     }
 
-    // 更新処理
     public function update(ProductsRequest $request, $productId)
     {
         $product = \App\Models\Product::findOrFail($productId);
 
         $imagePath = $product->image;
         if ($request->hasFile('image')) {
-            // 画像を保存
             $path = $request->file('image')->store('public/fruits-img');
-            // パスから 'public/' を取り除く
             $imagePath = str_replace('public/', '', $path);
         }
 
@@ -93,7 +86,6 @@ class ProductsController extends Controller
             'description' => $request->description,
         ]);
 
-        // 季節の同期
         $product->seasons()->sync($request->season_id);
 
         return redirect()->route('products.list')->with('success', '商品を更新しました');

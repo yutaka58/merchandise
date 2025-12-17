@@ -6,19 +6,16 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class ProductsRequest extends FormRequest
 {
-    /**
-     * ユーザーがこのリクエストを行う権限があるか確認
-     */
     public function authorize()
     {
         return true;
     }
 
-    /**
-     * バリデーションルール
-     */
+ 
     public function rules()
     {
+        $imageRule = $this->isMethod('POST') ? 'required|image|mimes:jpeg,png' : 'nullable|image|mimes:jpeg,png';
+        
         return [
             'name' => 'required',
             'price' => 'required|integer|min:0|max:10000',

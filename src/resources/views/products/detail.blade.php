@@ -52,7 +52,6 @@
                         @foreach($seasons as $season)
                             <label>
                                 <input type="checkbox" name="season_id[]" value="{{ $season->id }}"
-                                    {{-- 💡 ここを修正：oldデータがあるか、または商品の既存データにあるかを確認 --}}
                                     @if(in_array($season->id, old('season_id', $product->seasons->pluck('id')->toArray())))
                                         checked
                                     @endif

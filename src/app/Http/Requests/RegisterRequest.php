@@ -13,6 +13,8 @@ class RegisterRequest extends FormRequest
 
     public function rules()
     {
+        $imageRule = $this->isMethod('POST') ? 'required|image|mimes:jpeg,png' : 'nullable|image|mimes:jpeg,png';
+        
         return [
             'name' => 'required',
             'price' => 'required|integer|min:0|max:10000',
